@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
@@ -8,8 +6,6 @@ function App() {
   const [isNumberallowed, setNumberAllowed] = useState(false);
   const [isCharAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
-
-  const passwordRef = useRef(null);
 
   const generatePassword = () => {
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -24,10 +20,10 @@ function App() {
 
       pass += str.charAt(randomNum);
     }
-    console.log("pass::", str);
-    console.log("pass::", pass);
     setPassword(pass);
   };
+
+  const passwordRef = useRef(null);
 
   const copyToClipboard = () => {
     passwordRef.current?.select();
@@ -49,6 +45,7 @@ function App() {
           ref={passwordRef}
         />
         <button
+          id="copyButton"
           className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
           onClick={copyToClipboard}
         >
