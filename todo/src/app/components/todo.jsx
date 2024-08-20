@@ -8,6 +8,10 @@ const Todo = () => {
 
   const onAddTodo = async (e) => {
     e.preventDefault();
+    if (task.trim() === "") {
+      alert("Please Write something to add task!");
+      return;
+    }
     dispatch(addTodo(task));
     setTask("");
   };
@@ -39,7 +43,12 @@ const Todo = () => {
           todos.map((todo) => (
             <li key={todo.id}>
               {todo.title}
-              <button>X</button>
+              <button
+                className="bg-red-600 p-2 m-2"
+                onClick={() => dispatch(removeTodo(todo.id))}
+              >
+                Delete
+              </button>
             </li>
           ))
         ) : (
